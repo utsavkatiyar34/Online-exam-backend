@@ -24,3 +24,7 @@ class Student(models.Model):
 
     def __str__(self):
         return self.Name
+
+class Course(models.Model):
+    Course_id = models.AutoField(primary_key=True)
+    
