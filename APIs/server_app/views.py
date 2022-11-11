@@ -49,3 +49,15 @@ def studentLogin(request):
          return Response({"Email":email,"Password":password},status=200)
     else:
         return Response({"message":"Invald credentials"},status=400)
+
+@api_view(['Post'])
+def getLoggedinstaff(request):
+    request_data = json.load(request)
+    email=request_data.get('Email')
+    password=request_data.get('Password')
+    user = Staff.objects.filter(Email=email,Password=password)
+    content = StaffSerializer(user, many=True).data
+    if content!=[]:
+         return Response({"data":content},status=200)
+    else:
+        return Response({"message":"Invald request"},status=400)

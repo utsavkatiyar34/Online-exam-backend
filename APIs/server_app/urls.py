@@ -15,4 +15,5 @@ urlpatterns = [
     path('',include(router.urls)),
     path('stafflogin/', views.staffLogin),
     path('studentlogin/', views.studentLogin),
+    path('getloggedinstaff/', views.getLoggedinstaff),
 ]
