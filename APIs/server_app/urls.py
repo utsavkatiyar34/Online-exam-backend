@@ -9,11 +9,12 @@ from rest_framework import routers
 router=routers.DefaultRouter()
 router.register(r'staff',StaffViewSet)
 router.register(r'student',StudentViewSet)
-# router.register(r'stafflogin',StaffLogin)
+
 
 urlpatterns = [
     path('',include(router.urls)),
     path('stafflogin/', views.staffLogin),
     path('studentlogin/', views.studentLogin),
     path('getloggedinstaff/', views.getLoggedinstaff),
+    path('getloggedinstudent/', views.getLoggedinstudent)
 ]

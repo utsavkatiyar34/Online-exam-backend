@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'server_app',
+    'cources',
     'rest_framework',
     'knox',
 ]

@@ -31,7 +31,7 @@ def staffLogin(request):
     request_data = json.load(request)
     email=request_data.get('Email')
     password=request_data.get('Password')
-    user = Staff.objects.filter(Email=email,Password=password)
+    user = Staff.objects.filter(Email=email,Password=password,isActive=True)
     content = StaffSerializer(user, many=True).data
     if content!=[]:
          return Response({"Email":email,"Password":password},status=200)
@@ -43,7 +43,7 @@ def studentLogin(request):
     request_data = json.load(request)
     email=request_data.get('Email')
     password=request_data.get('Password')
-    user = Student.objects.filter(Email=email,Password=password)
+    user = Student.objects.filter(Email=email,Password=password,isActive=True)
     content = StudentSerializer(user, many=True).data
     if content!=[]:
          return Response({"Email":email,"Password":password},status=200)
@@ -55,8 +55,20 @@ def getLoggedinstaff(request):
     request_data = json.load(request)
     email=request_data.get('Email')
     password=request_data.get('Password')
-    user = Staff.objects.filter(Email=email,Password=password)
+    user = Staff.objects.filter(Email=email,Password=password,isActive=True)
     content = StaffSerializer(user, many=True).data
+    if content!=[]:
+         return Response({"data":content},status=200)
+    else:
+        return Response({"message":"Invald request"},status=400)
+
+@api_view(['Post'])
+def getLoggedinstudent(request):
+    request_data = json.load(request)
+    email=request_data.get('Email')
+    password=request_data.get('Password')
+    user = Student.objects.filter(Email=email,Password=password,isActive=True)
+    content = StudentSerializer(user, many=True).data
     if content!=[]:
          return Response({"data":content},status=200)
     else:
