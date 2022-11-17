@@ -15,4 +15,5 @@ urlpatterns = [
     path('getcourses/', views.getCourses),
     path('getsubscribed/', views.getassigned),
     path('getassignedtest/', views.getassignedtest),
+    path('getquestions/', views.getQuestions),
 ]

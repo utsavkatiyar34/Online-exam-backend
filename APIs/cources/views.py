@@ -56,3 +56,14 @@ def getassignedtest(request):
         return Response({"data":content},status=200)
     else:
         return Response({"message":"Invalid request"},status=400)
+
+@api_view(['Post'])
+def getQuestions(request):
+    request_data=json.load(request)
+    course=request_data.get('Test_id')
+    tests=Question.objects.filter(Test=course)
+    content=QuestionSerializer(tests, many=True).data
+    if content!=[]:
+        return Response({"data":content},status=200)
+    else:
+        return Response({"message":"Invalid request"},status=400)
