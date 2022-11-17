@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Course,Test,Question,Assigned
+from .models import Course,Test,Question,Assigned,Score
 
 class CourseSerializer(serializers.ModelSerializer):
     Course_id=serializers.ReadOnlyField()
@@ -34,3 +34,9 @@ class SubsSerializer(serializers.ModelSerializer):
     class Meta:
         model=Assigned
         fields=['Course']
+
+class ScoreSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model=Score
+        fields=['Score']

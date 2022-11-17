@@ -40,3 +40,12 @@ class Assigned(models.Model):
      
     def __int__(self):
         return self.Assigned_id
+
+class Score(models.Model):
+    Score_id=models.AutoField(primary_key=True)
+    Score=models.IntegerField(blank=False,unique=True)
+    Student_id=models.ForeignKey(Student,on_delete=models.CASCADE,blank=False)
+    Test_id=models.ForeignKey(Test,on_delete=models.CASCADE,blank=False)
+
+    def __int__(self):
+        return self.Score

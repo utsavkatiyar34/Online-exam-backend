@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from rest_framework import viewsets
-from .models import Course,Test,Question,Assigned
+from .models import Course,Test,Question,Assigned,Score
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import json
-from .serializers import CourseSerializer,TestSerializer,QuestionSerializer,AssignedSerializer,SubsSerializer
+from .serializers import CourseSerializer,TestSerializer,QuestionSerializer,AssignedSerializer,SubsSerializer,ScoreSerializer
 # Create your views here.
 
 
@@ -24,6 +24,10 @@ class AssignedViewSet(viewsets.ModelViewSet):
     queryset=Assigned.objects.all()
     serializer_class=AssignedSerializer
 
+class ScoreViewSet(viewsets.ModelViewSet):
+    queryset=Score.objects.all()
+    serializer_class=ScoreSerializer
+    
 @api_view(['Post'])
 def getCourses(request):
     request_data = json.load(request)
